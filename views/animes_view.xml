@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <record id="view_animes_tree" model="ir.ui.view">
+        <field name="name">catalogo.animes.tree</field>
+        <field name="model">catalogo.animes</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_animes_form" model="ir.ui.view">
+        <field name="name">catalogo.animes.form</field>
+        <field name="model">catalogo.animes</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <widget name="web_ribbon" title="completed" bg_color="bg-danger" attrs="{'invisible':[('state','=','incomplete')]}"/>
+                    <group>
+                        <group>
+                            <field name="image" widget="image" class="oe.avatar"/>
+                            <field name="name" text-align="center"/>
+                            <field name="state" invisible="True"/>
+                        </group>
+                        <group>
+                            <field name="sinopsis"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- <record id="view_animes_kanban" model="ir.ui.view">
+        <field name="name">catalogo.animes.kanban</field>
+        <field name="model">catalogo.animes</field>
+        <field name="arch" type="xml">
+            <kanban class="o_res_partner_kanban" sample="1">
+                <field name="name"/>
+                <templates>
+                    <t t-name="kanban-box">
+
+                        <div class="oe_kanban_global_click o_kanban_record_has_image_fill o_res_partner_kanban">
+                            <t t-if="!record.animes.raw_value">
+                                <t t-set="background_image" t-value="kanban_image('catalogo.animes', 'image', record.id.raw_value)"/>
+                                <div class="o_kanban_image_fill_left d-none d-md-block" t-attf-style="background-image:url('#{background_image}')">
+                                    <img class="o_kanban_image_inner_pic" t-if="catalogo.animes.raw_value" t-att-alt="catalogo.animes.value" t-att-src="kanban_image('catalogo.animes', 'image', record.animes.raw_value)"/>
+                                </div>
+                                <div class="o_kanban_image d-md-none" t-attf-style="background-image: url(#{background_image})">
+                                    <img class="o_kanban_image_inner_pic" t-if="record.animes.raw_value" t-att-alt="record.animes.value" t-att-src="kanban_image('catalogo.animes', 'image', record.animes.raw_value)"/>
+                                </div>
+                            </t>
+                            <t t-else="">
+                                <div class="o_kanban_image_fill_left o_kanban_image_full" t-attf-style="background-image: url(#{kanban_image('catalogo.animes', 'image', record.id.raw_value)})" role="img"/>
+                            </t>
+                            <div class="oe_kanban_details">
+                                <ul>
+                                    <li>
+                                        <field name="name"/>
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </div>
+
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record> -->
+
+    <record id="view_animes_search" model="ir.ui.view">
+        <field name="name">catalogo.animes.search</field>
+        <field name="model">catalogo.animes</field>
+        <field name="arch" type="xml">
+            <search string="Animes">
+                <field name="name"/>
+                <field name="animes_id"/>
+                <separator/>
+                <!-- <filter string="Active" name="active" domain="[('active','=',True)]"/> -->
+
+                <filter string="Complete" name="complete" domain="[('state', '=', 'complete')]"/>
+                <group expand="1" string="Gruop_By">
+                    <filter string="Animes" name="animes_id" context="{'group_by':'animes_id'}"/>
+                </group>
+                <searchpanel>
+                    <field name="state" string="Status" enable_counters="1"/>
+                </searchpanel>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_catalogo_animes" model="ir.actions.act_window">
+        <field name="name">Animes</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">catalogo.animes</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="context">{}</field>
+        <field name="help" type="xml">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first Anime!
+            </p>
+        </field>
+    </record>
+</odoo>
+            
+
+
