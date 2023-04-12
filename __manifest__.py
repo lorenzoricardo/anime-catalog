@@ -14,8 +14,9 @@
         'security/ir.model.access.csv',
         'data/data.xml', 
         'views/menus.xml',
-        #'views/catalogo_view.xml',
-        'views/animes_view.xml'
+        'views/catalogo_view.xml',
+        'views/animes_view.xml',
+        'views/see_view.xml'
         ],
     'demo' : [],
     'qweb' : [],

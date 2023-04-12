@@ -5,16 +5,16 @@
         <field name="name">catalogo.catalogo.kanban</field>
         <field name="model">catalogo.catalogo</field>
         <field name="arch" type="xml">
-            <kanban>
-                <img src='/om_catalogo/static/src/img/air_gear.jpg' style="max-height: 50px;"/>
+            <kanban class="o_kanban_mobile">
                 <field name="image"/>
-                <templates>
+                 <templates>
                     <t t-name="kanban-box">
-                        <div class="o_kanban_image">
-                            <t t-if="record.image.raw_value">
-                                <img t-att-src="kanban_image('catalogo.catalogo', 'image_medium', record.id.value)"/>
-                            </t>
-                        </div>
+                       
+                            <div class="oe_kanban_details">
+                                <field name="image" widget="image" class="oe_avatar" options="{'size': [150, 250]}"/>
+                                
+                            </div>
+                        
                     </t>
                 </templates>
             </kanban>
@@ -28,7 +28,9 @@
         <field name="view_mode">kanban</field>
         <field name="context">{}</field>
         <field name="help" type="html">
-            <img src='/om_catalogo/static/src/img/air_gear.jpg' style="max-height: 50px;"/>
+            <p class="o_view_nocontent_smiling_face">
+                Create 
+            </p>
         </field>
     </record>
 </odoo>

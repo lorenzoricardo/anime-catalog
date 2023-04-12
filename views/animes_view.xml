@@ -8,6 +8,7 @@
             <tree>
                 <field name="name"/>
                 <field name="state"/>
+                <field name="caps" optional="hide"/>
             </tree>
         </field>
     </record>
@@ -19,11 +20,14 @@
             <form>
                 <sheet>
                     <widget name="web_ribbon" title="completed" bg_color="bg-danger" attrs="{'invisible':[('state','=','incomplete')]}"/>
+                    <h1 style="text-align:center">
+                        <field name="name"/>
+                    </h1>
                     <group>
                         <group>
-                            <field name="image" widget="image" class="oe.avatar"/>
-                            <field name="name" text-align="center"/>
+                            <field name="image" widget="image" class="oe.avatar" />
                             <field name="state" invisible="True"/>
+                            <field name="caps"/>
                         </group>
                         <group>
                             <field name="sinopsis"/>
@@ -34,43 +38,38 @@
         </field>
     </record>
 
-    <!-- <record id="view_animes_kanban" model="ir.ui.view">
-        <field name="name">catalogo.animes.kanban</field>
+    <record id="view_animes_kanban" model="ir.ui.view">
+        <field name="name">catalogos.animes.kanban</field>
         <field name="model">catalogo.animes</field>
         <field name="arch" type="xml">
-            <kanban class="o_res_partner_kanban" sample="1">
+            <kanban class="o_kanban_mobile">
                 <field name="name"/>
+                <field name="state"/>
                 <templates>
                     <t t-name="kanban-box">
-
-                        <div class="oe_kanban_global_click o_kanban_record_has_image_fill o_res_partner_kanban">
-                            <t t-if="!record.animes.raw_value">
-                                <t t-set="background_image" t-value="kanban_image('catalogo.animes', 'image', record.id.raw_value)"/>
-                                <div class="o_kanban_image_fill_left d-none d-md-block" t-attf-style="background-image:url('#{background_image}')">
-                                    <img class="o_kanban_image_inner_pic" t-if="catalogo.animes.raw_value" t-att-alt="catalogo.animes.value" t-att-src="kanban_image('catalogo.animes', 'image', record.animes.raw_value)"/>
-                                </div>
-                                <div class="o_kanban_image d-md-none" t-attf-style="background-image: url(#{background_image})">
-                                    <img class="o_kanban_image_inner_pic" t-if="record.animes.raw_value" t-att-alt="record.animes.value" t-att-src="kanban_image('catalogo.animes', 'image', record.animes.raw_value)"/>
-                                </div>
-                            </t>
-                            <t t-else="">
-                                <div class="o_kanban_image_fill_left o_kanban_image_full" t-attf-style="background-image: url(#{kanban_image('catalogo.animes', 'image', record.id.raw_value)})" role="img"/>
-                            </t>
+                        <div t-attf-class="oe_kanban_global_click">
                             <div class="oe_kanban_details">
+                                <field name="image" widget="image" class="oe_avatar" options="{'size': [150, 250]}"/>
                                 <ul>
                                     <li>
-                                        <field name="name"/>
+                                        <h5>
+                                            <field name="name"/>
+                                        </h5>
+                                    </li>
+                                    <li>
+                                        <field name="caps"/>
+                                    </li>
+                                    <li>
+                                        <field name="state"/>
                                     </li>
                                 </ul>
-
                             </div>
                         </div>
-
                     </t>
                 </templates>
             </kanban>
         </field>
-    </record> -->
+    </record>
 
     <record id="view_animes_search" model="ir.ui.view">
         <field name="name">catalogo.animes.search</field>
@@ -80,8 +79,6 @@
                 <field name="name"/>
                 <field name="animes_id"/>
                 <separator/>
-                <!-- <filter string="Active" name="active" domain="[('active','=',True)]"/> -->
-
                 <filter string="Complete" name="complete" domain="[('state', '=', 'complete')]"/>
                 <group expand="1" string="Gruop_By">
                     <filter string="Animes" name="animes_id" context="{'group_by':'animes_id'}"/>

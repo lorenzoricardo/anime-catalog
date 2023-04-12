@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <odoo>
-    <menuitem id="menu_catalogo_root" name="Catalogo" sequence="10"/>
-    <menuitem id="menu_animes" name="Animes" parent="menu_catalogo_root" action="action_catalogo_animes" sequence="10"/>
+    <menuitem id="menu_catalogo" name="Catalogo" action="action_catalogo_catalogo" sequence="10"/>
+    <menuitem id="menu_animes" name="Animes" parent="menu_catalogo" action="action_catalogo_animes" sequence="10"/>
+    <menuitem id="menu_see" name="To See" parent="menu_catalogo" action="action_catalogo_see" sequence="20"/>
+
 </odoo>
     

@@ -3,6 +3,7 @@
 from odoo import api,models,fields
 from odoo.exceptions import ValidationError
 
+
 class CatalogoAnimes(models.Model):
     _name='catalogo.animes'
     _inherit=['mail.thread','mail.activity.mixin']
@@ -13,9 +14,11 @@ class CatalogoAnimes(models.Model):
     state = fields.Selection([
         ('incomplete','Incompleted'),
         ('complete','Completed')
-    ],required=False,string="Status")
+    ],required=False,string="Status",default="incomplete")
     sinopsis = fields.Text(string="Sinopsis")
     animes_id = fields.Many2one('catalogo.animes',string="Animes",required=True)
+    caps=fields.Integer(string="Capitulos")
+   
     
     
     @api.constrains('name')
@@ -30,4 +33,5 @@ class CatalogoAnimes(models.Model):
         
     def action_incomplete(self):
         self.state='incomplete'
+        
     
