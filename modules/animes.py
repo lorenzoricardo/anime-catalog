@@ -16,13 +16,16 @@ class CatalogoAnimes(models.Model):
         ('complete','Completed')
     ],required=False,string="Status",default="incomplete")
     sinopsis = fields.Text(string="Sinopsis")
-    animes_id = fields.Many2one('catalogo.animes',string="Animes",required=True)
-    caps=fields.Integer(string="Capitulos")
+    animes_id = fields.Many2one('catalogo.animes',string="Precuela",required=False)
+    caps = fields.Integer(string="Capitulos")
+    precuela = fields.Many2one('catalogo.animes',string="Precuela",required=False)
+    secuela = fields.Many2one('catalogo.animes',string="Secuela",required=False,default=True)
    
     
     
     @api.constrains('name')
     def check_name(self):
+        print(repr(self.precuela))
         for rec in self:
             animes=self.env['catalogo.animes'].search([('name','=',rec.name),('id','!=',rec.id)])
             if animes:

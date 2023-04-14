@@ -27,10 +27,13 @@
                         <group>
                             <field name="image" widget="image" class="oe.avatar" />
                             <field name="state" invisible="True"/>
-                            <field name="caps"/>
                         </group>
                         <group>
                             <field name="sinopsis"/>
+                            <field name="caps"/>
+                            <field name="precuela" attrs="{'readonly':[('precuela','=',[ ])]}"/>
+                            <field name="secuela" attrs="{'readonly':[('precuela','=',[ ])]}"/>
+
                         </group>
                     </group>
                 </sheet>
@@ -62,6 +65,7 @@
                                     <li>
                                         <field name="state"/>
                                     </li>
+
                                 </ul>
                             </div>
                         </div>

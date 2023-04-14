@@ -9,7 +9,7 @@ class CatalogoSee(models.Model):
     
     name=fields.Char(string="Name",required=True)
     state=fields.Selection([
-        ('trasmission','Trasmission'),
+        ('airing','Airing'),
         ('finished','Finished')
     ],required=True,string='Status')
     
